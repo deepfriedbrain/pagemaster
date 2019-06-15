@@ -26,6 +26,7 @@ class Pagemaster < Jekyll::Command
           id_key: config['collections'][name].fetch('id_key'),
           layout: config['collections'][name].fetch('layout'),
           source: config['collections'][name].fetch('source'),
+          folder: config['collections'][name].fetch('folder'),
           ext:    config.fetch('permalink', '') == 'pretty' ? '/' : '.html'
         }
         data = ingest(meta)
@@ -71,7 +72,8 @@ class Pagemaster < Jekyll::Command
       data.each do |item|
         pagename = slug(item.fetch(meta[:id_key]))
         pagepath = "#{dir}/#{pagename}.md"
-        item['permalink'] = "/#{name}/#{pagename}#{perma}" if perma
+        folder = meta[:folder]
+        item['permalink'] = "/#{folder}/#{pagename}#{perma}" if perma
         item['layout']    = meta[:layout]
         if File.exist?(pagepath)
           puts "#{pagename}.md already exits. Skipping."
