@@ -61,8 +61,9 @@ class Pagemaster < Jekyll::Command
 
     def generate_pages(name, meta, data, opts)
       dir       = "_#{name}"
-      perma     = opts.fetch(:no_perma, meta[:ext])
-
+      #perma     = opts.fetch(:no_perma, meta[:ext])
+      perma     = opts.fetch(:no_perma, '/')
+      
       if opts.fetch(:force, false)
         FileUtils.rm_rf(dir)
         puts "Overwriting #{dir} directory with --force."
