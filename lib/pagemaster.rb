@@ -70,12 +70,12 @@ class Pagemaster < Jekyll::Command
       end
 
       mkdir_p(dir)
+      folder = meta[:folder]
       data.each do |item|
+        item['layout']    = meta[:layout]        
         pagename = slug(item.fetch(meta[:id_key]))
         pagepath = "#{dir}/#{pagename}.md"
-        folder = meta[:folder]
         item['permalink'] = "/#{folder}/#{pagename}#{perma}" if perma
-        item['layout']    = meta[:layout]
         if File.exist?(pagepath)
           puts "#{pagename}.md already exits. Skipping."
         else
