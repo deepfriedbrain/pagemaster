@@ -25,6 +25,7 @@ class Pagemaster < Jekyll::Command
         meta = {
           id_key: config['collections'][name].fetch('id_key'),
           layout: config['collections'][name].fetch('layout'),
+          group: config['collections'][name].fetch('group'),          
           source: config['collections'][name].fetch('source'),
           folder: config['collections'][name].fetch('folder'),
           ext:    config.fetch('permalink', '') == 'pretty' ? '/' : '.html'
