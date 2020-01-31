@@ -72,7 +72,8 @@ class Pagemaster < Jekyll::Command
       mkdir_p(dir)
       folder = meta[:folder]
       data.each do |item|
-        item['layout']    = meta[:layout]        
+        item['layout']    = meta[:layout]
+        item['group']    = meta[:group]        
         pagename = slug(item.fetch(meta[:id_key]))
         pagepath = "#{dir}/#{pagename}.md"
         item['permalink'] = "/#{folder}/#{pagename}#{perma}" if perma
