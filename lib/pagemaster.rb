@@ -89,7 +89,7 @@ class Pagemaster < Jekyll::Command
     end
 
     def slug(str)
-      str.downcase.tr(' ', '-').gsub(/[^:\w-]/, '')
+      str.downcase.tr(' ', '-').gsub(/[&'/;]/, '-').gsub(/-+/, '-').gsub(/[^:\w-]/, '')
     end
   end
 end
