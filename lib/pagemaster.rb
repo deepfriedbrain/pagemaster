@@ -25,7 +25,8 @@ class Pagemaster < Jekyll::Command
         meta = {
           id_key: config['collections'][name].fetch('id_key'),
           layout: config['collections'][name].fetch('layout'),
-          group: config['collections'][name].fetch('group'),          
+          group: config['collections'][name].fetch('group'),
+          program: config['collections'][name].fetch('program'),
           source: config['collections'][name].fetch('source'),
           folder: config['collections'][name].fetch('folder'),
           ext:    config.fetch('permalink', '') == 'pretty' ? '/' : '.html'
@@ -74,7 +75,8 @@ class Pagemaster < Jekyll::Command
       folder = meta[:folder]
       data.each do |item|
         item['layout']    = meta[:layout]
-        item['group']    = meta[:group]        
+        item['group']    = meta[:group]
+        item['program']    = meta[:program]
         pagename = slug(item.fetch(meta[:id_key]))
         pagepath = "#{dir}/#{pagename}.md"
         item['permalink'] = "/#{folder}/#{pagename}#{perma}" if perma
